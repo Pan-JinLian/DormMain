@@ -9,18 +9,42 @@ import java.util.List;
 public interface LiveMapper {
 
     // 查询所有住宿记录
+    @Results({
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "dormitoryId", column = "dormitory_id"),
+            @Result(property = "bedId", column = "bed_id"),
+            @Result(property = "liveInDate", column = "live_in_date")
+    })
     @Select("SELECT * FROM live")
     List<Live> selectAll();
 
     // 根据ID查询住宿记录
+    @Results({
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "dormitoryId", column = "dormitory_id"),
+            @Result(property = "bedId", column = "bed_id"),
+            @Result(property = "liveInDate", column = "live_in_date")
+    })
     @Select("SELECT * FROM live WHERE id = #{id}")
     Live selectById(@Param("id") Integer id);
 
     // 根据学生ID查询住宿记录
+    @Results({
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "dormitoryId", column = "dormitory_id"),
+            @Result(property = "bedId", column = "bed_id"),
+            @Result(property = "liveInDate", column = "live_in_date")
+    })
     @Select("SELECT * FROM live WHERE student_id = #{studentId}")
     List<Live> selectByStudentId(@Param("studentId") String studentId);
 
     // 根据宿舍ID查询住宿记录
+    @Results({
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "dormitoryId", column = "dormitory_id"),
+            @Result(property = "bedId", column = "bed_id"),
+            @Result(property = "liveInDate", column = "live_in_date")
+    })
     @Select("SELECT * FROM live WHERE dormitory_id = #{dormitoryId}")
     List<Live> selectByDormitoryId(@Param("dormitoryId") String dormitoryId);
 

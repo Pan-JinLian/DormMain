@@ -9,10 +9,20 @@ import java.util.List;
 public interface DormitoryMapper {
 
     // 查询所有宿舍
-    @Select("SELECT id, building_id, floor, max_number, lived_number FROM dormitory")
+    @Results({
+            @Result(property = "buildingId", column = "building_id"),
+            @Result(property = "maxNumber", column = "max_number"),
+            @Result(property = "livedNumber", column = "lived_number")
+    })
+    @Select("SELECT * FROM dormitory")
     List<Dormitory> selectAll();
 
     // 根据楼栋ID查询宿舍
+    @Results({
+            @Result(property = "buildingId", column = "building_id"),
+            @Result(property = "maxNumber", column = "max_number"),
+            @Result(property = "livedNumber", column = "lived_number")
+    })
     @Select("SELECT id, building_id, floor, max_number, lived_number " +
             "FROM dormitory WHERE building_id = #{buildingId}")
     List<Dormitory> selectByBuildingId(@Param("buildingId") String buildingId);

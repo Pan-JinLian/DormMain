@@ -9,10 +9,16 @@ import java.util.List;
 public interface BuildingMapper {
 
     // 查询所有宿舍楼
+    @Results({
+            @Result(property = "managerId", column = "manager_id")
+    })
     @Select("SELECT id, name, type, floors, rooms, manager_id FROM building")
     List<Building> selectAll();
 
     // 根据ID查询单个宿舍楼
+    @Results({
+            @Result(property = "managerId", column = "manager_id")
+    })
     @Select("SELECT id, name, type, floors, rooms, manager_id FROM building WHERE id = #{id}")
     Building selectById(@Param("id") String id);
 
